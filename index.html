@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Калькулятор банковской гарантии — расчёт онлайн</title>
+  <meta name="description" content="Единый калькулятор банковской гарантии: участие, исполнение, гарантия качества, возврат аванса, гарантия платежа. Быстрый расчёт и заявка." />
+  <link rel="icon" href="/favicon.ico" />
+</head>
+<body data-variant="all">
+  <div class="wrap">
+    <header class="card " style="margin-bottom:16px">
+      <h1 id="page-title">Калькулятор банковской гарантии</h1>
+      <p class="sub" id="page-sub">Мгновенный расчёт комиссии. Итоговые условия — после скоринга заявки.</p>
+    </header>
+
+    <section class="card grid" style="gap:18px">
+      <!-- ИНН / Наименование -->
+      <div class="grid cols-2">
+        <div>
+          <label for="inn">ИНН</label>
+          <input id="inn" placeholder="10 или 12 цифр" inputmode="numeric" />
+          <div class="err" id="err-inn"></div>
+        </div>
+        <div>
+          <label for="company">Наименование организации</label>
+          <div class="company__wrapper">
+            <input id="company" placeholder="Автоподстановка по ИНН" />
+            <button class="primary" style="width:auto" id="btn-lookup" type="button">Найти</button>
+          </div>
+        </div>
+      </div>
+      <!-- Режим / доп. условия / тип -->
+      <div class="grid cols-2">
+        <div>
+          <label for="mode">Режим</label>
+          <select id="mode">
+            <option value="44-fz">44-ФЗ</option>
+            <option value="223-fz">223-ФЗ</option>
+            <option value="commercial">Коммерческий договор</option>
+          </select>
+        </div>
+        <div>
+          <label for="gtype">Тип гарантии</label>
+          <select id="gtype">
+            <option value="execution">Исполнение контракта</option>
+            <option value="warranty">Гарантийные обязательства</option>
+            <option value="bid">Участие (обеспечение заявки)</option>
+            <option value="advance">Возврат аванса</option>
+            <option value="payment">Гарантия платежа</option>
+          </select>
+        </div>
+      </div>
+      <div id="extras" class="hidden">
+          <label>Доп. условия</label>
+          <div class="inline"> <label for="closed">Закрытая процедура</label> <input type="checkbox" id="closed" /></div>
+          <div class="inline"> <label for="single">Единственный поставщик</label> <input type="checkbox" id="single" /></div>
+        </div>
+      <!-- Даты / Сумма -->
+      <div class="grid cols-3">
+        <div>
+          <label for="start">Дата начала</label>
+          <input id="start" type="date" />
+        </div>
+        <div>
+          <label for="end">Дата окончания</label>
+          <input id="end" type="date" />
+          <div class="help">Срок: <span id="months">0.00</span> мес. / <span id="days">0</span> дней</div>
+        </div>
+        <div>
+          <label for="sum">Сумма обеспечения, ₽</label>
+          <input id="sum" placeholder="3 000 000" inputmode="numeric" />
+          <div class="err" id="err-sum"></div>
+        </div>
+      </div>
+
+      <!-- Итог -->
+      <div>
+        <div class="amount">Ориентировочная комиссия: <span id="fee">0</span> ₽</div>
+        <div class="help">Зависит от срока и типа гарантии. Минимальная комиссия — <span id="minFee">7000</span> ₽.</div>
+      </div>
+
+      <hr style="border:none;border-top:1px solid var(--border)" />
+
+      <!-- Контакты -->
+      <div class="grid cols-3">
+        <div>
+          <label for="phone">Телефон</label>
+          <input id="phone" placeholder="+7 999 123-45-67" />
+          <div class="err" id="err-phone"></div>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" placeholder="you@example.com" />
+          <div class="err" id="err-email"></div>
+        </div>
+        <div>
+          <label for="comment">Комментарий (необязательно)</label>
+          <input id="comment" placeholder="Например, нужна срочно к понедельнику" />
+        </div>
+      </div>
+
+      <div class="inline">
+        <label class="inline"><input type="checkbox" id="consent" /> Согласен(на) на обработку персональных данных</label>
+      </div>
+
+      <div class="inline" style="gap:12px">
+        <button class="primary" id="submit" type="button">Получить предложение</button>
+        <button class="ghost" id="reset" type="button">Сбросить</button>
+      </div>
+      <span class="help" id="msg"></span>
+
+    </section>
+
+    <!-- SEO-текст (универсальный) -->
+    <section class="card" style="margin-top:16px">
+      <h2>Банковская гарантия: быстрый расчёт и оформление</h2>
+      <p>
+        Единый калькулятор помогает оценить ориентировочную стоимость банковской гарантии
+        для участия в закупках, исполнения контракта, гарантийных обязательств, возврата
+        аванса и гарантий платежа. Итоговые условия зависят от параметров закупки и профиля
+        компании. После отправки заявки мы оперативно подтверждаем условия и сопровождаем
+        выпуск гарантии до её принятия заказчиком.
+      </p>
+      <h3>Когда это требуется</h3>
+      <ul>
+        <li>Участие в закупках по 44-ФЗ и 223-ФЗ;</li>
+        <li>Исполнение контрактных обязательств по срокам и объёму;</li>
+        <li>Возврат авансового платежа заказчику;</li>
+        <li>Гарантия качества и гарантия платежа в коммерции.</li>
+      </ul>
+      <p>Рассчитайте стоимость — и отправьте заявку на оформление онлайн.</p>
+    </section>
+
+    <!-- Футер с перекрёстными ссылками -->
+    <footer class="footer">
+      <div class="card">
+        <div class="help" style="margin-bottom:8px">Наши калькуляторы:</div>
+        <div class="links">
+          <a href="/index.html">Единый калькулятор</a>
+          <a href="/bid.html">Участие</a>
+          <a href="/execution.html">Исполнение контракта</a>
+          <a href="/advance.html">Возврат аванса</a>
+          <a href="/warranty.html">Гарантийные обяз.</a>
+          <a href="/payment.html">Гарантия платежа</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/js/main.js"></script>
+</body>
+</html>
