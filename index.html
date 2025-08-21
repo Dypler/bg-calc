@@ -8,7 +8,24 @@
   <link rel="icon" href="/favicon.ico" />
 </head>
 <body data-variant="all">
-  <div class="wrap">
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">Калькулятор БГ</a>
+      <nav class="nav" id="site-nav" aria-label="Основная навигация">
+        <a href="#" data-gtype="bid">Обеспечение заявки</a>
+        <a href="#" data-gtype="execution">Исполнение контракта</a>
+        <a href="#" data-gtype="advance">Возврат аванса</a>
+        <a href="#" data-gtype="payment">Гарантия платежа</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="Меню" aria-controls="site-nav" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="wrap" style="padding-top: calc(var(--header-h) + 16px)">
     <header class="card " style="margin-bottom:16px">
       <h1 id="page-title">Калькулятор банковской гарантии</h1>
       <p class="sub" id="page-sub">Мгновенный расчёт комиссии. Итоговые условия — после скоринга заявки.</p>
@@ -19,7 +36,7 @@
       <div class="grid cols-2">
         <div>
           <label for="inn">ИНН</label>
-          <input id="inn" placeholder="10 или 12 цифр" inputmode="numeric" />
+          <input id="inn" type="text" inputmode="numeric" placeholder="10 или 12 цифр" />
           <div class="err" id="err-inn"></div>
         </div>
         <div>
@@ -52,8 +69,8 @@
       </div>
       <div id="extras" class="hidden">
           <label>Доп. условия</label>
-          <div class="inline"> <label for="closed">Закрытая процедура</label> <input type="checkbox" id="closed" /></div>
-          <div class="inline"> <label for="single">Единственный поставщик</label> <input type="checkbox" id="single" /></div>
+          <div class="inline">  <input  type="checkbox" id="closed" /> <label for="closed">Закрытая процедура</label></div>
+          <div class="inline">  <input type="checkbox" id="single" /> <label for="single">Единственный поставщик</label></div>
         </div>
       <!-- Даты / Сумма -->
       <div class="grid cols-3">
@@ -68,7 +85,7 @@
         </div>
         <div>
           <label for="sum">Сумма обеспечения, ₽</label>
-          <input id="sum" placeholder="3 000 000" inputmode="numeric" />
+          <input id="sum" type="text" inputmode="numeric" placeholder="3 000 000" />
           <div class="err" id="err-sum"></div>
         </div>
       </div>
@@ -85,12 +102,12 @@
       <div class="grid cols-3">
         <div>
           <label for="phone">Телефон</label>
-          <input id="phone" placeholder="+7 999 123-45-67" />
+          <input id="phone" type="tel" inputmode="tel" placeholder="+7 999 123-45-67" />
           <div class="err" id="err-phone"></div>
         </div>
         <div>
           <label for="email">Email</label>
-          <input id="email" placeholder="you@example.com" />
+          <input id="email" type="email" placeholder="you@example.com" />
           <div class="err" id="err-email"></div>
         </div>
         <div>
@@ -100,7 +117,7 @@
       </div>
 
       <div class="inline">
-        <label class="inline"><input type="checkbox" id="consent" /> Согласен(на) на обработку персональных данных</label>
+        <label class="inline"><input type="checkbox" id="consent" />Я ознакомлен с политикой конфиденциальности и выражаю своё согласие на обработку персональных данных</a></label>
       </div>
 
       <div class="form" style="gap:12px">

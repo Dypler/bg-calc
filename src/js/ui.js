@@ -70,3 +70,9 @@ export async function lookupInn({ innEl, companyEl, errEl }){
     errEl.textContent = 'Ошибка запроса. Укажите наименование вручную.';
   }
 }
+
+// Утилита: дебаунс
+export function debounce(fn, ms = 200){
+  let t;
+  return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+}

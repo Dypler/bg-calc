@@ -1,6 +1,7 @@
 import '../scss/main.scss'
-import { initMasks, recalcAndRender, toggleGov, validate, lookupInn } from './ui.js'
+import { initMasks, recalcAndRender, toggleGov, validate, lookupInn, debounce } from './ui.js'
 import { getVariant, lockTypeIfNeeded } from './variants.js'
+import { initHeader } from './header.js'
 
 const $ = (id) => document.getElementById(id);
 
@@ -35,14 +36,27 @@ const els = {
   msg: $('msg')
 };
 
+// Header
+initHeader();
+
 // маски
 initMasks({ phoneEl: els.phone, innEl: els.inn, sumEl: els.sum });
 
 // дефолтные даты
+function toLocalISO(d){
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  return `${y}-${m}-${day}`;
+}
+function endOfNextMonth(from){
+  const y = from.getFullYear();
+  const m = from.getMonth();
+  return new Date(y, m + 2, 0); // последний день следующего месяца
+}
 const today = new Date();
-const toISO = (d)=>d.toISOString().slice(0,10);
-els.start.value = toISO(today);
-els.end.value = toISO(new Date(today.getFullYear(), today.getMonth()+6, today.getDate()));
+els.start.value = toLocalISO(today);
+els.end.value = toLocalISO(endOfNextMonth(today));
 
 // вариант страницы
 const VARIANT = getVariant();
@@ -71,8 +85,13 @@ function recalc(){
 });
 recalc();
 
-// поиск по ИНН (авто по blur)
-els.inn?.addEventListener('blur', ()=>{ if (els.inn.value.trim()) lookupInn({ innEl: els.inn, companyEl: els.company, errEl: els.err.inn }) });
+// поиск по ИНН — при blur и по вводу (дебаунс)
+const doLookup = ()=>{ if (els.inn.value.trim()) lookupInn({ innEl: els.inn, companyEl: els.company, errEl: els.err.inn }) };
+els.inn?.addEventListener('blur', doLookup);
+els.inn?.addEventListener('input', debounce(()=>{
+  const digits = (els.inn.value||'').replace(/\D+/g,'');
+  if (digits.length===10 || digits.length===12) doLookup();
+}, 350));
 
 // отправка
 els.submit?.addEventListener('click', async ()=>{
@@ -123,6 +142,45 @@ els.submit?.addEventListener('click', async ()=>{
   }
 });
 
-// сброс
-els.reset?.addEventListener('click', ()=>location.reload());
+// сброс (без перезагрузки страницы)
+function resetForm(){
+  // селекты и доп. условия
+  if (els.mode) els.mode.value = '44-fz';
+  if (els.closed) els.closed.checked = false;
+  if (els.single) els.single.checked = false;
+  toggleGov({ modeEl: els.mode, extrasWrap: els.extrasWrap });
+
+  // даты по умолчанию
+  const now = new Date();
+  if (els.start) els.start.value = toLocalISO(now);
+  if (els.end) els.end.value = toLocalISO(endOfNextMonth(now));
+
+  // сумма и поля
+  if (els.sum) els.sum.value = '';
+  if (els.inn) els.inn.value = '';
+  if (els.company) els.company.value = '';
+  if (els.phone) els.phone.value = '';
+  if (els.email) els.email.value = '';
+  if (els.comment) els.comment.value = '';
+  if (els.consent) els.consent.checked = false;
+
+  // тип гарантии с учётом текущего варианта страницы
+  lockTypeIfNeeded(VARIANT, els.gtype);
+
+  // ошибки и сообщения
+  if (els.err?.inn) els.err.inn.textContent = '';
+  if (els.err?.sum) els.err.sum.textContent = '';
+  if (els.err?.phone) els.err.phone.textContent = '';
+  if (els.err?.email) els.err.email.textContent = '';
+  if (els.msg) els.msg.textContent = '';
+
+  // пересчёт и фокус
+  recalc();
+  els.inn?.focus();
+}
+
+els.reset?.addEventListener('click', (e)=>{
+  e.preventDefault();
+  resetForm();
+});
 
