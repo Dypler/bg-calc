@@ -15,13 +15,31 @@ function resolveToken(){
   if (import.meta.env.DEV) return 'e073ea318d08dbaa698e4fd6d5696b1e00338362';
   return '';
 }
-function getToken(){
-  // Берём токен на каждый вызов, чтобы подхватывать изменения (localStorage/meta) без перезагрузки
-  return resolveToken();
+let loadedFromConfig = false;
+async function getTokenAsync(){
+  // Пытаемся получить токен из env/localStorage/meta
+  const direct = resolveToken();
+  if (direct) return direct;
+  // Один раз пробуем загрузить из /config.json (runtime)
+  if (!loadedFromConfig) {
+    loadedFromConfig = true;
+    try{
+      const res = await fetch('/config.json', { cache: 'no-store' });
+      if (res.ok) {
+        const cfg = await res.json();
+        const t = (cfg && cfg.dadataToken) ? String(cfg.dadataToken).trim() : '';
+        if (t) {
+          try{ localStorage.setItem('DADATA_TOKEN', t); }catch(_){/* ignore */}
+          return t;
+        }
+      }
+    }catch(_){/* ignore */}
+  }
+  return '';
 }
 
 export async function findByInn(inn){
-  const TOKEN = getToken();
+  const TOKEN = await getTokenAsync();
   if (!TOKEN) return null; // без токена — не ищем
   const url = 'https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party';
   const res = await fetch(url, {
