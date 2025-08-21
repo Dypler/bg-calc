@@ -20,7 +20,6 @@ const els = {
   minFee: $('minFee'),
   inn: $('inn'),
   company: $('company'),
-  btnLookup: $('btn-lookup'),
   phone: $('phone'),
   email: $('email'),
   comment: $('comment'),
@@ -72,8 +71,7 @@ function recalc(){
 });
 recalc();
 
-// поиск по ИНН
-els.btnLookup?.addEventListener('click', ()=>lookupInn({ innEl: els.inn, companyEl: els.company, errEl: els.err.inn }));
+// поиск по ИНН (авто по blur)
 els.inn?.addEventListener('blur', ()=>{ if (els.inn.value.trim()) lookupInn({ innEl: els.inn, companyEl: els.company, errEl: els.err.inn }) });
 
 // отправка

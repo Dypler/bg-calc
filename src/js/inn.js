@@ -1,4 +1,4 @@
-const TOKEN = import.meta.env.VITE_DADATA_TOKEN || 'e073ea318d08dbaa698e4fd6d5696b1e00338362'; // лучше использовать свой прокси вместо прямого ключа
+const TOKEN = import.meta.env.VITE_DADATA_TOKEN || '';
 
 export async function findByInn(inn){
   if (!TOKEN) return null; // без токена просто не ищем

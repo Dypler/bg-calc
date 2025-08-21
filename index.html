@@ -26,7 +26,6 @@
           <label for="company">Наименование организации</label>
           <div class="company__wrapper">
             <input id="company" placeholder="Автоподстановка по ИНН" />
-            <button class="primary" style="width:auto" id="btn-lookup" type="button">Найти</button>
           </div>
         </div>
       </div>
@@ -75,9 +74,9 @@
       </div>
 
       <!-- Итог -->
-      <div>
-        <div class="amount">Ориентировочная комиссия: <span id="fee">0</span> ₽</div>
-        <div class="help">Зависит от срока и типа гарантии. Минимальная комиссия — <span id="minFee">7000</span> ₽.</div>
+      <div class="amount">
+        <div class="amount__price">Ориентировочная комиссия: <span id="fee">0</span> ₽</div>
+        <div class="amount__help">Зависит от срока и типа гарантии. Минимальная комиссия — <span id="minFee">0</span> ₽.</div>
       </div>
 
       <hr style="border:none;border-top:1px solid var(--border)" />
@@ -104,7 +103,7 @@
         <label class="inline"><input type="checkbox" id="consent" /> Согласен(на) на обработку персональных данных</label>
       </div>
 
-      <div class="inline" style="gap:12px">
+      <div class="form" style="gap:12px">
         <button class="primary" id="submit" type="button">Получить предложение</button>
         <button class="ghost" id="reset" type="button">Сбросить</button>
       </div>
@@ -138,11 +137,6 @@
         <div class="help" style="margin-bottom:8px">Наши калькуляторы:</div>
         <div class="links">
           <a href="/index.html">Единый калькулятор</a>
-          <a href="/bid.html">Участие</a>
-          <a href="/execution.html">Исполнение контракта</a>
-          <a href="/advance.html">Возврат аванса</a>
-          <a href="/warranty.html">Гарантийные обяз.</a>
-          <a href="/payment.html">Гарантия платежа</a>
         </div>
       </div>
     </footer>

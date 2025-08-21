@@ -40,7 +40,8 @@ export function validate({ innEl, sumEl, phoneEl, emailEl, consentEl, errs }){
   errs.sum.textContent = sum >= 10000 ? '' : 'Минимальная сумма 10 000 ₽';
   if (errs.sum.textContent) ok=false;
 
-  errs.phone.textContent = phoneEl.value.trim() ? '' : 'Укажите телефон';
+  const phoneDigits = (phoneEl.value||'').replace(/\D+/g,'');
+  errs.phone.textContent = phoneDigits.length >= 11 ? '' : 'Укажите корректный телефон';
   if (errs.phone.textContent) ok=false;
 
   errs.email.textContent = (/^[^\s@]+@[^@\s]+\.[^@\s]+$/.test(emailEl.value)) ? '' : 'Укажите корректный email';
