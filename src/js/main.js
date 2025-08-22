@@ -97,7 +97,7 @@ els.inn?.addEventListener('input', debounce(()=>{
 // отправка
 els.submit?.addEventListener('click', async ()=>{
   if (!validate({ innEl: els.inn, sumEl: els.sum, phoneEl: els.phone, emailEl: els.email, consentEl: els.consent, errs: els.err })) {
-    showError('Проверьте корректность полей и согласие на обработку ПДн');
+    showError('Проверьте корректность полей и согласие на обработку персональных данных и политики конфиденциальности');
     return;
   }
   els.msg.textContent = 'Отправка…';
