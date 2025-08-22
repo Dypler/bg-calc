@@ -2,6 +2,7 @@ import '../scss/main.scss'
 import { initMasks, recalcAndRender, toggleGov, validate, lookupInn, debounce } from './ui.js'
 import { getVariant, lockTypeIfNeeded } from './variants.js'
 import { initHeader } from './header.js'
+import { sendLead } from './api.js'
 
 const $ = (id) => document.getElementById(id);
 
@@ -96,7 +97,7 @@ els.inn?.addEventListener('input', debounce(()=>{
 // отправка
 els.submit?.addEventListener('click', async ()=>{
   if (!validate({ innEl: els.inn, sumEl: els.sum, phoneEl: els.phone, emailEl: els.email, consentEl: els.consent, errs: els.err })) {
-    els.msg.textContent = 'Проверьте корректность полей и согласие на обработку ПДн';
+    showError('Проверьте корректность полей и согласие на обработку ПДн');
     return;
   }
   els.msg.textContent = 'Отправка…';
@@ -131,14 +132,58 @@ els.submit?.addEventListener('click', async ()=>{
   };
 
   try{
-    const res = await fetch('/api/leads/bg', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
-    if (!res.ok) throw new Error('HTTP '+res.status);
-    els.msg.textContent = 'Заявка отправлена. Мы свяжемся с вами.';
+    const result = await sendLead(payload);
+    if (result.success) {
+      showSuccess();
+      resetForm(); // Сброс формы после успешной отправки
+    } else {
+      throw new Error(result.error);
+    }
   }catch(e){
     console.error(e);
-    els.msg.textContent = 'Ошибка отправки. Попробуйте ещё раз.';
+    showError('Ошибка отправки. Попробуйте ещё раз.');
   }finally{
     els.submit.disabled = false;
+  }
+});
+
+// Показать модалку успеха
+function showSuccess() {
+  const modal = document.getElementById('success-modal');
+  if (modal) {
+    modal.classList.add('show');
+  }
+}
+
+// Закрыть модалку успеха
+function closeSuccessModal() {
+  const modal = document.getElementById('success-modal');
+  if (modal) {
+    modal.classList.remove('show');
+  }
+}
+
+// Показать ошибку в модалке
+function showError(message) {
+  const modal = document.getElementById('error-modal');
+  const messageEl = document.getElementById('modal-message');
+  if (modal && messageEl) {
+    messageEl.textContent = message;
+    modal.classList.add('show');
+  }
+}
+
+// Закрытие модалки по клику на фон
+document.getElementById('error-modal')?.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal-overlay')) {
+    e.target.classList.remove('show');
+  }
+});
+
+// Закрытие модалки успеха по клику на фон
+document.getElementById('success-modal')?.addEventListener('click', (e) => {
+  if (e.target.classList.contains('modal-overlay')) {
+    e.target.classList.remove('show');
   }
 });
 

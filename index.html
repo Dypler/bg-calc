@@ -160,5 +160,23 @@
   </div>
 
   <script type="module" src="/src/js/main.js"></script>
+
+  <!-- Modal для ошибок -->
+  <div class="modal-overlay" id="error-modal">
+    <div class="modal">
+      <h3>Ошибка</h3>
+      <p id="modal-message"></p>
+      <button class="btn" onclick="document.getElementById('error-modal').classList.remove('show')">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- Modal для успешной отправки -->
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal">
+      <h3 style="color: var(--accent);">Заявка отправлена!</h3>
+      <p>Спасибо! Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.</p>
+      <button class="btn" onclick="closeSuccessModal()">Отлично</button>
+    </div>
+  </div>
 </body>
 </html>

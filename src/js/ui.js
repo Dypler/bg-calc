@@ -5,11 +5,41 @@ import { findByInn } from './inn.js'
 export function initMasks({ phoneEl, innEl, sumEl }){
   if (phoneEl) IMask(phoneEl, { mask: '+{7} 000 000-00-00' });
   if (innEl) IMask(innEl, { mask: [{mask:'0000000000'},{mask:'000000000000'}] });
-  if (sumEl) IMask(sumEl, { mask: Number, scale: 0, thousandsSeparator: ' ', padFractionalZeros: false });
+  if (sumEl) IMask(sumEl, { 
+    mask: Number, 
+    scale: 2, 
+    thousandsSeparator: ' ', 
+    padFractionalZeros: false,
+    radix: '.',
+    mapToRadix: ['.', ',']
+  });
 }
 
 export function getSumValue(sumEl){
   return Number(String(sumEl.value || '0').replace(/\s/g,''));
+}
+
+// Анимированный счётчик
+function animateCounter(element, start, end, duration = 800) {
+  const startTime = performance.now();
+  const diff = end - start;
+  
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    
+    // Easing function (ease-out)
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = start + (diff * easeOut);
+    
+    element.textContent = Math.round(current).toLocaleString('ru-RU');
+    
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+  
+  requestAnimationFrame(update);
 }
 
 export function recalcAndRender({ startEl, endEl, sumEl, gtypeEl, extras, out }){
@@ -21,7 +51,20 @@ export function recalcAndRender({ startEl, endEl, sumEl, gtypeEl, extras, out })
   const kType = coefByType(gtypeEl.value);
   const kExtra = coefByExtras(extras);
   const fee = calcFee(sum, m, DEFAULT_BASE_RATE, kType, kExtra);
-  out.fee.textContent = fee.toLocaleString('ru-RU');
+  
+  // Получаем текущее значение комиссии
+  const currentFeeText = out.fee.textContent.replace(/\s/g,'');
+  const currentFee = currentFeeText === '0' ? 0 : Number(currentFeeText) || 0;
+  
+  // Анимация только если есть реальное изменение и текущее значение не 0
+  if (currentFee !== fee && currentFee > 0) {
+    out.fee.classList.add('updating');
+    animateCounter(out.fee, currentFee, fee, 800);
+    setTimeout(() => out.fee.classList.remove('updating'), 800);
+  } else {
+    out.fee.textContent = fee.toLocaleString('ru-RU');
+  }
+  
   out.minFee.textContent = MIN_FEE_RUB.toLocaleString('ru-RU');
 }
 

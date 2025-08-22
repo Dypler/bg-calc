@@ -1,0 +1,134 @@
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-h);
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .logo {
+    font-weight: 800;
+    color: #000;
+    text-decoration: none;
+  }
+
+  .nav {
+    display: flex;
+    gap: 16px;
+
+    a {
+      color: #000;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+
+      &:hover {
+        background: #f3f3f3;
+      }
+    }
+  }
+
+  .burger {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #9c9c9c;
+    background: #fff;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    span {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #000;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+
+      &:nth-child(1) {
+        transform: translate(-50%, calc(-50% - 6px));
+      }
+
+      &:nth-child(2) {
+        transform: translate(-50%, -50%);
+      }
+
+      &:nth-child(3) {
+        transform: translate(-50%, calc(-50% + 6px));
+      }
+    }
+
+    &.active {
+      span {
+        &:nth-child(1) {
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+        }
+
+        &:nth-child(3) {
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  @media (max-width: 860px) {
+    .nav {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.6);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+      z-index: 900;
+
+      a {
+        font-size: 18px;
+        padding: 12px 14px;
+        border-radius: 10px;
+      }
+
+      &.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+    }
+
+    .burger {
+      display: inline-flex;
+    }
+  }
+}

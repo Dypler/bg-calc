@@ -1,0 +1,95 @@
+h1 {
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+.sub {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.company {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.help {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.err {
+  position: absolute;
+  color: var(--err);
+  font-size: 12px;
+}
+
+.amount {
+  border-radius: 12px;
+  background: #7ec245;
+  padding: 16px 26px;
+
+  &__price {
+    font-weight: 800;
+    font-size: 24px;
+    color: #fff;
+    transition: color 0.15s ease;
+
+    &.updating {
+      color: #ff6b35;
+    }
+  }
+
+  &__help {
+    font-size: 12px;
+    color: #fff;
+  }
+}
+
+button {
+  &.primary {
+    background: var(--accent);
+    border-color: transparent;
+    color: #fff;
+    font-weight: 800;
+    cursor: pointer;
+
+    &:hover {
+      filter: brightness(1.06);
+    }
+  }
+
+  &.ghost {
+    background: transparent;
+    border: 1px solid #43973b;
+    color: #000;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer {
+  margin-top: 24px;
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
