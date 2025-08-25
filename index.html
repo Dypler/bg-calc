@@ -24,14 +24,25 @@
       </button>
     </div>
   </header>
+  <section class="hero">
+    <div class="hero__container">
+      <div class="hero__content">
+        <h1>Банковская гарантия — расчёт и заявка онлайн
+        </h1>
+        <p class="hero__desc">
+          Рассчитайте ориентировочную комиссию по банковской гарантии для тендера или контракта прямо на сайте. После отправки заявки мы проверим параметры и подберём вариант в банке, который соответствует вашим условиям.
 
-  <div class="wrap" style="padding-top: calc(var(--header-h) + 16px)">
-    <header class="card " style="margin-bottom:16px">
-      <h1 id="page-title">Калькулятор банковской гарантии</h1>
+        </p>
+        <a href="#calc" class="hero__btn">Рассчитать гарантию</a>
+      </div>
+    </div>
+  </section>
+  <div class="wrap">
+    <section class="card " style="margin-bottom:16px; margin-top: 100px;">
+      <h2 id="page-title">Калькулятор банковской гарантии</h1>
       <p class="sub" id="page-sub">Мгновенный расчёт комиссии. Итоговые условия — после скоринга заявки.</p>
-    </header>
-
-    <section class="card grid" style="gap:18px">
+    </section>
+    <section class="card grid calc-section" id="calc">
       <!-- ИНН / Наименование -->
       <div class="grid cols-2">
         <div>
@@ -69,8 +80,8 @@
       </div>
       <div id="extras" class="hidden">
           <label>Доп. условия</label>
-          <div class="inline">  <input  type="checkbox" id="closed" /> <label for="closed">Закрытая процедура</label></div>
-          <div class="inline">  <input type="checkbox" id="single" /> <label for="single">Единственный поставщик</label></div>
+          <div class="inline">  <input  type="checkbox" id="closed" /> <label class="choice" for="closed">Закрытая процедура</label></div>
+          <div class="inline">  <input type="checkbox" id="single" /> <label class="choice" for="single">Единственный поставщик</label></div>
         </div>
       <!-- Даты / Сумма -->
       <div class="grid cols-3">
@@ -85,7 +96,7 @@
         </div>
         <div>
           <label for="sum">Сумма обеспечения, ₽</label>
-          <input id="sum" type="text" inputmode="numeric" placeholder="3 000 000" />
+          <input id="sum" type="text" inputmode="numeric" placeholder="Введите сумму" />
           <div class="err" id="err-sum"></div>
         </div>
       </div>
@@ -112,12 +123,12 @@
         </div>
         <div>
           <label for="comment">Комментарий (необязательно)</label>
-          <input id="comment" placeholder="Например, нужна срочно к понедельнику" />
+          <input id="comment" placeholder="Введите комментарий" />
         </div>
       </div>
 
       <div class="inline">
-        <label class="inline"><input type="checkbox" id="consent" />Я ознакомлен с политикой конфиденциальности и выражаю своё согласие на обработку персональных данных</a></label>
+        <label class="policy" ><input type="checkbox" id="consent" /> <p> Я ознакомлен с <a href="/policy.html">политикой конфиденциальности</a> и выражаю своё <a href="/consent.html">согласие на обработку персональных данных</a></p></label>
       </div>
 
       <div class="form" style="gap:12px">
@@ -154,6 +165,8 @@
         <div class="help" style="margin-bottom:8px">Наши калькуляторы:</div>
         <div class="links">
           <a href="/index.html">Единый калькулятор</a>
+          <a href="/policy.html">Политика конфиденциальности</a>
+          <a href="/consent.html">Согласие на обработку ПДн</a>
         </div>
       </div>
     </footer>

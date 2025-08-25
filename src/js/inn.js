@@ -55,9 +55,27 @@ export async function findByInn(inn){
   const data = await res.json();
   const s = data?.suggestions?.[0];
   if (!s) return null;
-  const d = s.data;
+  const d = s.data || {};
+  // Сокращаем ОПФ в имени (ООО/ИП/АО) — используем короткую форму, если есть
+  const short = d?.name?.short_with_opf;
+  let name = short || d?.name?.full_with_opf || s.value || '';
+  if (!short) {
+    const upper = name.toUpperCase();
+    const repl = [
+      { long: 'ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ', short: 'ООО' },
+      { long: 'ИНДИВИДУАЛЬНЫЙ ПРЕДПРИНИМАТЕЛЬ', short: 'ИП' },
+      { long: 'АКЦИОНЕРНОЕ ОБЩЕСТВО', short: 'АО' },
+    ];
+    for (const r of repl){
+      if (upper.startsWith(r.long)) {
+        name = r.short + name.slice(r.long.length);
+        break;
+      }
+    }
+    name = name.trim();
+  }
   return {
-    name: d?.name?.full_with_opf || d?.name?.short_with_opf || s.value,
+    name,
     ogrn: d?.ogrn || '',
     kpp: d?.kpp || '',
     address: d?.address?.value || ''

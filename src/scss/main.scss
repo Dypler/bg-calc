@@ -1,6 +1,10 @@
+@use 'normalize.css/normalize.css';
+@use 'modern-css-reset/dist/reset.css';
 @use './vars';
 @use './layout';
 @use './header';
 @use './forms';
 @use './components';
 @use './modal';
+@use './hero';
+@use './animations';

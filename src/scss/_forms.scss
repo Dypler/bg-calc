@@ -8,6 +8,21 @@ label {
   margin-bottom: 6px;
 }
 
+.choice {
+  font-weight: 400;
+  margin-bottom: 0;
+}
+.policy {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 0;
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+}
+
 input,
 select,
 button {
@@ -47,6 +62,7 @@ input[type="checkbox"] {
   -webkit-appearance: none;
   appearance: none;
   width: 18px;
+  padding: 8px;
   height: 18px;
   border-radius: 4px;
   border: 2px solid var(--accent);

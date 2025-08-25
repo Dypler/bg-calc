@@ -6,7 +6,16 @@
   height: var(--header-h);
   background: var(--card);
   border-bottom: 1px solid var(--border);
-  z-index: 1000;
+  z-index: 1001; // Выше hero секции (1000)
+  opacity: 0; // Изначально скрыт
+  visibility: hidden; // Изначально скрыт
+  transition: all 0.5s ease; // Анимация появления
+
+  // Показываем хедер после анимации
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
 
   .container {
     max-width: 980px;

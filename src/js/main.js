@@ -3,6 +3,7 @@ import { initMasks, recalcAndRender, toggleGov, validate, lookupInn, debounce } 
 import { getVariant, lockTypeIfNeeded } from './variants.js'
 import { initHeader } from './header.js'
 import { sendLead } from './api.js'
+import './animations.js' // Импорт анимаций
 
 const $ = (id) => document.getElementById(id);
 

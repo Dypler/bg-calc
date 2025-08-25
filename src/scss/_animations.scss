@@ -1,0 +1,96 @@
+/**
+ * Альтернативные варианты анимаций для hero секции
+ * Раскомментируйте нужный вариант и закомментируйте остальные
+ */
+
+.hero {
+  // Базовые настройки анимации
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &--hidden {
+    // === ВАРИАНТ 1: Fade Out (по умолчанию) ===
+    opacity: 0;
+    visibility: hidden;
+    
+    // === ВАРИАНТ 2: Slide Up ===
+    // transform: translateY(-100vh);
+    // opacity: 0;
+    // visibility: hidden;
+    
+    // === ВАРИАНТ 3: Scale Down ===
+    // transform: scale(0.8);
+    // opacity: 0;
+    // visibility: hidden;
+    
+    // === ВАРИАНТ 4: Slide Up + Fade ===
+    // transform: translateY(-50px);
+    // opacity: 0;
+    // visibility: hidden;
+    
+    // === ВАРИАНТ 5: Slide Left ===
+    // transform: translateX(-100vw);
+    // opacity: 0;
+    // visibility: hidden;
+    
+    // === ВАРИАНТ 6: Slide Right ===
+    // transform: translateX(100vw);
+    // opacity: 0;
+    // visibility: hidden;
+    
+    // === ВАРИАНТ 7: Zoom Out ===
+    // transform: scale(1.5);
+    // opacity: 0;
+    // visibility: hidden;
+    
+    // === ВАРИАНТ 8: Rotate + Scale ===
+    // transform: rotate(5deg) scale(0.9);
+    // opacity: 0;
+    // visibility: hidden;
+  }
+  
+  // Предотвращаем скролл в hero секции
+  &--hidden {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+// Стили для основного контента (калькулятор и хедер)
+.wrap {
+  // Изначально скрыт
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  
+  // Показываем при анимации
+  &--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Фиксация калькулятора - он не скроллится пока hero не скрыт
+#calc {
+  // Изначально скрыт
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+  
+  // Показываем при анимации
+  &.calc--visible {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+// Настройки времени анимаций
+.hero {
+  // Быстрая анимация
+  // transition: all 0.4s ease;
+  
+  // Средняя анимация (по умолчанию)
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  // Медленная анимация
+  // transition: all 1.2s ease-in-out;
+} 
