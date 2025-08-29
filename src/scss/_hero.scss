@@ -12,7 +12,6 @@
     bottom: 0;
     z-index: 1000; // Высокий z-index
     overflow: hidden; // Убираем скролл
-    
     // Класс для скрытия hero секции
     &--hidden {
       opacity: 0;
