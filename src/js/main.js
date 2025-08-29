@@ -45,6 +45,16 @@ initHeader();
 // Инициализируем стандартные модалки
 initStandardModals();
 
+// Инициализируем Matrix анимацию для hero секции
+document.addEventListener('DOMContentLoaded', () => {
+  // Ждем полной загрузки DOM
+  setTimeout(() => {
+    if (window.matrixAnimation) {
+      window.matrixAnimation.init();
+    }
+  }, 100);
+});
+
 // Запрещаем скролл при загрузке страницы
 document.body.classList.add('no-scroll');
 
@@ -55,6 +65,11 @@ const heroBtn = document.querySelector('.hero__btn');
 if (heroBtn) {
   heroBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    
+    // Останавливаем Matrix анимацию
+    if (window.matrixAnimation) {
+      window.matrixAnimation.stop();
+    }
     
     // Разрешаем скролл
     document.body.classList.remove('no-scroll');
