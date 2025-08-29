@@ -1,5 +1,5 @@
 .hero {
-    background: rgb(28, 96, 255); // фон можно сменить на фирменный
+    background: rgb(0, 0, 0); // фон можно сменить на фирменный
     color: var(--text);
     height: 100vh; // Фиксированная высота вместо min-height
     display: flex;
@@ -30,10 +30,29 @@
       justify-content: center;
       text-align: center;
       padding: 60px 20px;
+      position: relative;
+      z-index: 2; // Поднимаем контент над анимацией
     }
   
     &__content {
       max-width: 800px;
+      position: relative;
+      z-index: 2;
+      
+      // Добавляем полупрозрачный фон для лучшей читаемости
+      &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        right: -20px;
+        bottom: -20px;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+        z-index: -1;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
     }
   
     h1 {
@@ -42,6 +61,12 @@
       font-weight: 800;
       margin-bottom: 20px;
       line-height: 1.2;
+      text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.6),
+        0 0 20px rgba(255, 255, 255, 0.3); // Добавляем белое свечение
+      position: relative;
+      z-index: 2;
     }
   
     &__desc {
@@ -49,9 +74,16 @@
       line-height: 1.6;
       color: #fff;
       margin-bottom: 30px;
+      text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.8),
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 255, 255, 0.2); // Добавляем белое свечение
   
       strong {
         color: var(--accent);
+        text-shadow: 
+          0 1px 3px rgba(0, 0, 0, 0.8),
+          0 0 10px rgba(255, 255, 255, 0.4); // Усиленное свечение для акцента
       }
     }
   
@@ -66,9 +98,18 @@
       font-size: 1.1rem;
       transition: all .2s ease;
       cursor: pointer;
+      position: relative;
+      z-index: 2;
+      box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.2); // Добавляем белое свечение
   
       &:hover {
         filter: brightness(1.1);
+        transform: translateY(-2px);
+        box-shadow: 
+          0 6px 16px rgba(0, 0, 0, 0.4),
+          0 0 25px rgba(255, 255, 255, 0.3); // Усиленное свечение при наведении
       }
     }
     
@@ -81,16 +122,27 @@
       h1 {
         font-size: 2.4rem;
         margin-bottom: 18px;
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.8),
+          0 4px 8px rgba(0, 0, 0, 0.6),
+          0 0 18px rgba(255, 255, 255, 0.3);
       }
       
       &__desc {
         font-size: 1.1rem;
         margin-bottom: 28px;
+        text-shadow: 
+          0 1px 3px rgba(0, 0, 0, 0.8),
+          0 2px 6px rgba(0, 0, 0, 0.6),
+          0 0 14px rgba(255, 255, 255, 0.2);
       }
       
       &__btn {
         padding: 12px 24px;
         font-size: 1rem;
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          0 0 18px rgba(255, 255, 255, 0.2);
       }
     }
     
@@ -103,18 +155,35 @@
       
       &__content {
         max-width: 100%;
+        
+        // Уменьшаем отступы фона для мобильных
+        &::before {
+          top: -15px;
+          left: -15px;
+          right: -15px;
+          bottom: -15px;
+          border-radius: 12px;
+        }
       }
       
       h1 {
         font-size: 2rem;
         margin-bottom: 16px;
         line-height: 1.3;
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.8),
+          0 4px 8px rgba(0, 0, 0, 0.6),
+          0 0 16px rgba(255, 255, 255, 0.3);
       }
       
       &__desc {
         font-size: 1rem;
         line-height: 1.5;
         margin-bottom: 24px;
+        text-shadow: 
+          0 1px 3px rgba(0, 0, 0, 0.8),
+          0 2px 6px rgba(0, 0, 0, 0.6),
+          0 0 12px rgba(255, 255, 255, 0.2);
       }
       
       &__btn {
@@ -122,6 +191,9 @@
         font-size: 0.95rem;
         width: 100%;
         max-width: 280px;
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          0 0 16px rgba(255, 255, 255, 0.2);
       }
     }
     
@@ -131,20 +203,42 @@
         padding: 30px 16px;
       }
       
+      &__content {
+        // Еще больше уменьшаем отступы фона
+        &::before {
+          top: -12px;
+          left: -12px;
+          right: -12px;
+          bottom: -12px;
+          border-radius: 10px;
+        }
+      }
+      
       h1 {
         font-size: 1.8rem;
         margin-bottom: 14px;
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.8),
+          0 4px 8px rgba(0, 0, 0, 0.6),
+          0 0 14px rgba(255, 255, 255, 0.3);
       }
       
       &__desc {
         font-size: 0.95rem;
         margin-bottom: 20px;
+        text-shadow: 
+          0 1px 3px rgba(0, 0, 0, 0.8),
+          0 2px 6px rgba(0, 0, 0, 0.6),
+          0 0 10px rgba(255, 255, 255, 0.2);
       }
       
       &__btn {
         padding: 10px 18px;
         font-size: 0.9rem;
         max-width: 260px;
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          0 0 14px rgba(255, 255, 255, 0.2);
       }
     }
     
@@ -154,20 +248,42 @@
         padding: 25px 12px;
       }
       
+      &__content {
+        // Минимальные отступы фона
+        &::before {
+          top: -10px;
+          left: -10px;
+          right: -10px;
+          bottom: -10px;
+          border-radius: 8px;
+        }
+      }
+      
       h1 {
         font-size: 1.6rem;
         margin-bottom: 12px;
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.8),
+          0 4px 8px rgba(0, 0, 0, 0.6),
+          0 0 12px rgba(255, 255, 255, 0.3);
       }
       
       &__desc {
         font-size: 0.9rem;
         margin-bottom: 18px;
+        text-shadow: 
+          0 1px 3px rgba(0, 0, 0, 0.8),
+          0 2px 6px rgba(0, 0, 0, 0.6),
+          0 0 8px rgba(255, 255, 255, 0.2);
       }
       
       &__btn {
         padding: 9px 16px;
         font-size: 0.85rem;
         max-width: 240px;
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          0 0 12px rgba(255, 255, 255, 0.2);
       }
     }
     
@@ -177,19 +293,110 @@
         padding: 20px 30px;
       }
       
+      &__content {
+        // Компактные отступы для ландшафтной ориентации
+        &::before {
+          top: -8px;
+          left: -8px;
+          right: -8px;
+          bottom: -8px;
+          border-radius: 6px;
+        }
+      }
+      
       h1 {
         font-size: 1.8rem;
         margin-bottom: 12px;
+        text-shadow: 
+          0 2px 4px rgba(0, 0, 0, 0.8),
+          0 4px 8px rgba(0, 0, 0, 0.6),
+          0 0 12px rgba(255, 255, 255, 0.3);
       }
       
       &__desc {
         font-size: 0.9rem;
         margin-bottom: 16px;
+        text-shadow: 
+          0 1px 3px rgba(0, 0, 0, 0.8),
+          0 2px 6px rgba(0, 0, 0, 0.6),
+          0 0 8px rgba(255, 255, 255, 0.2);
       }
       
       &__btn {
         padding: 8px 16px;
         font-size: 0.85rem;
+        box-shadow: 
+          0 4px 12px rgba(0, 0, 0, 0.3),
+          0 0 10px rgba(255, 255, 255, 0.2);
       }
     }
   }
+  
+// Matrix анимация стили
+.matrix-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  
+  // Добавляем градиентную маску для лучшей читаемости текста
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0, 0, 0, 0.1) 40%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  p {
+    display: block;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    white-space: nowrap;
+    position: absolute;
+    top: 0;
+    z-index: 0;
+  }
+  
+  span {
+    display: block;
+    width: 1.5vmax;
+    height: 1.5vmax;
+    font-size: 1.5vmax;
+    color: rgba(155, 255, 155, 0.25); // Уменьшаем яркость для лучшей читаемости
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    transition: color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    
+    @media (max-width: 768px) {
+      width: 2vmax;
+      height: 2vmax;
+      font-size: 2vmax;
+    }
+    
+    @media (max-width: 480px) {
+      width: 2.5vmax;
+      height: 2.5vmax;
+      font-size: 2.5vmax;
+    }
+  }
+}
+  
