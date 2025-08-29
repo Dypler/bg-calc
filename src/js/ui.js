@@ -76,19 +76,23 @@ export function toggleGov({ modeEl, extrasWrap }){
 export function validate({ innEl, sumEl, phoneEl, emailEl, consentEl, errs }){
   let ok = true;
   const inn = (innEl.value||'').replace(/\D+/g,'');
-  errs.inn.textContent = (inn.length===10 || inn.length===12) ? '' : 'ИНН: 10 (юр) или 12 (ИП) цифр';
-  if (errs.inn.textContent) ok=false;
+  const innError = (inn.length===10 || inn.length===12) ? '' : 'ИНН: 10 (юр) или 12 (ИП) цифр';
+  showInputError(innEl, innError);
+  if (innError) ok=false;
 
   const sum = getSumValue(sumEl);
-  errs.sum.textContent = sum >= 10000 ? '' : 'Минимальная сумма 10 000 ₽';
-  if (errs.sum.textContent) ok=false;
+  const sumError = sum >= 10000 ? '' : 'Минимальная сумма 10 000 ₽';
+  showInputError(sumEl, sumError);
+  if (sumError) ok=false;
 
   const phoneDigits = (phoneEl.value||'').replace(/\D+/g,'');
-  errs.phone.textContent = phoneDigits.length >= 11 ? '' : 'Укажите корректный телефон';
-  if (errs.phone.textContent) ok=false;
+  const phoneError = phoneDigits.length >= 11 ? '' : 'Укажите корректный телефон';
+  showInputError(phoneEl, phoneError);
+  if (phoneError) ok=false;
 
-  errs.email.textContent = (/^[^\s@]+@[^@\s]+\.[^@\s]+$/.test(emailEl.value)) ? '' : 'Укажите корректный email';
-  if (errs.email.textContent) ok=false;
+  const emailError = (/^[^\s@]+@[^@\s]+\.[^@\s]+$/.test(emailEl.value)) ? '' : 'Укажите корректный email';
+  showInputError(emailEl, emailError);
+  if (emailError) ok=false;
 
   if (!consentEl.checked) ok=false;
 
@@ -97,20 +101,45 @@ export function validate({ innEl, sumEl, phoneEl, emailEl, consentEl, errs }){
 
 export async function lookupInn({ innEl, companyEl, errEl }){
   const inn = (innEl.value||'').replace(/\D+/g,'');
-  if (!(inn.length===10 || inn.length===12)) { errEl.textContent = 'ИНН некорректен'; return; }
+  if (!(inn.length===10 || inn.length===12)) { 
+    showInputError(innEl, 'ИНН некорректен'); 
+    return; 
+  }
   companyEl.value = 'Поиск…';
   try{
     const info = await findByInn(inn);
     if (info) {
       companyEl.value = info.name || '';
-      errEl.textContent = '';
+      showInputError(innEl, '');
     } else {
       companyEl.value = '';
-      errEl.textContent = 'Не найдено. Укажите наименование вручную.';
+      showInputError(innEl, 'Не найдено. Укажите наименование вручную.');
     }
   }catch(e){
     companyEl.value = '';
-    errEl.textContent = 'Ошибка запроса. Укажите наименование вручную.';
+    showInputError(innEl, 'Ошибка запроса. Укажите наименование вручную.');
+  }
+}
+
+// Функция для отображения ошибок внутри input
+export function showInputError(inputEl, errorText) {
+  if (errorText) {
+    // Сохраняем оригинальный placeholder
+    if (!inputEl.dataset.originalPlaceholder) {
+      inputEl.dataset.originalPlaceholder = inputEl.placeholder || '';
+    }
+    
+    // Показываем ошибку как placeholder с красным цветом
+    inputEl.placeholder = errorText;
+    inputEl.style.color = 'var(--err)';
+    inputEl.style.borderColor = 'var(--err)';
+  } else {
+    // Восстанавливаем оригинальный placeholder и стили
+    if (inputEl.dataset.originalPlaceholder !== undefined) {
+      inputEl.placeholder = inputEl.dataset.originalPlaceholder;
+    }
+    inputEl.style.color = '';
+    inputEl.style.borderColor = '';
   }
 }
 

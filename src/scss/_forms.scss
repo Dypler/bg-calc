@@ -164,3 +164,16 @@ input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--text) !important;
   transition: background-color 9999s ease-in-out 0s;
 }
+
+/* Стили для input с ошибками */
+input[style*="color: var(--err)"] {
+  &::placeholder {
+    color: var(--err) !important;
+    font-weight: 500;
+  }
+  
+  &:focus {
+    border-color: var(--err);
+    box-shadow: 0 0 0 3px rgba(246, 101, 10, 0.15);
+  }
+}

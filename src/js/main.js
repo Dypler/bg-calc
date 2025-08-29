@@ -1,9 +1,10 @@
 import '../scss/main.scss'
-import { initMasks, recalcAndRender, toggleGov, validate, lookupInn, debounce } from './ui.js'
+import { initMasks, recalcAndRender, toggleGov, validate, lookupInn, debounce, showInputError } from './ui.js'
 import { getVariant, lockTypeIfNeeded } from './variants.js'
 import { initHeader } from './header.js'
 import { sendLead } from './api.js'
 import './animations.js' // Импорт анимаций
+import { hystModal, showSuccess, showError, closeSuccessModal, initStandardModals } from './modals.js'
 
 const $ = (id) => document.getElementById(id);
 
@@ -40,6 +41,38 @@ const els = {
 
 // Header
 initHeader();
+
+// Инициализируем стандартные модалки
+initStandardModals();
+
+// Запрещаем скролл при загрузке страницы
+document.body.classList.add('no-scroll');
+
+// Находим кнопку "Рассчитать гарантию" в hero секции
+const heroBtn = document.querySelector('.hero__btn');
+
+// При клике на кнопку разрешаем скролл и скрываем hero секцию
+if (heroBtn) {
+  heroBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    // Разрешаем скролл
+    document.body.classList.remove('no-scroll');
+    
+    // Плавно скрываем hero секцию
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+      heroSection.classList.add('hero--hidden');
+      
+      // Полностью скрываем после анимации
+      setTimeout(() => {
+        heroSection.style.display = 'none';
+      }, 300);
+    }
+    
+
+  });
+}
 
 // маски
 initMasks({ phoneEl: els.phone, innEl: els.inn, sumEl: els.sum });
@@ -148,45 +181,7 @@ els.submit?.addEventListener('click', async ()=>{
   }
 });
 
-// Показать модалку успеха
-function showSuccess() {
-  const modal = document.getElementById('success-modal');
-  if (modal) {
-    modal.classList.add('show');
-  }
-}
 
-// Закрыть модалку успеха
-function closeSuccessModal() {
-  const modal = document.getElementById('success-modal');
-  if (modal) {
-    modal.classList.remove('show');
-  }
-}
-
-// Показать ошибку в модалке
-function showError(message) {
-  const modal = document.getElementById('error-modal');
-  const messageEl = document.getElementById('modal-message');
-  if (modal && messageEl) {
-    messageEl.textContent = message;
-    modal.classList.add('show');
-  }
-}
-
-// Закрытие модалки по клику на фон
-document.getElementById('error-modal')?.addEventListener('click', (e) => {
-  if (e.target.classList.contains('modal-overlay')) {
-    e.target.classList.remove('show');
-  }
-});
-
-// Закрытие модалки успеха по клику на фон
-document.getElementById('success-modal')?.addEventListener('click', (e) => {
-  if (e.target.classList.contains('modal-overlay')) {
-    e.target.classList.remove('show');
-  }
-});
 
 // сброс (без перезагрузки страницы)
 function resetForm(){
@@ -219,6 +214,12 @@ function resetForm(){
   if (els.err?.phone) els.err.phone.textContent = '';
   if (els.err?.email) els.err.email.textContent = '';
   if (els.msg) els.msg.textContent = '';
+  
+  // Очищаем ошибки в input полях
+  if (els.inn) showInputError(els.inn, '');
+  if (els.sum) showInputError(els.sum, '');
+  if (els.phone) showInputError(els.phone, '');
+  if (els.email) showInputError(els.email, '');
 
   // пересчёт и фокус
   recalc();

@@ -17,6 +17,10 @@ body {
   &.menu-open {
     overflow: hidden;
   }
+  
+  &.no-scroll {
+    overflow: hidden;
+  }
 }
 
 .wrap {

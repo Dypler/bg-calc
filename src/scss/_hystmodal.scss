@@ -1,0 +1,102 @@
+/* Базовые стили для hystmodal - только для корректного отображения */
+.hystmodal {
+  z-index: 1002 !important;
+}
+.hystmodal__window {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 32px 24px;
+  border-bottom: 1px solid var(--border);
+  
+  h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: var(--border);
+    color: var(--text);
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.modal-body {
+  padding: 24px 32px 32px;
+  
+  h3 {
+    margin: 24px 0 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  p {
+    margin: 0 0 16px;
+    line-height: 1.6;
+    color: var(--text);
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .hystmodal__window {
+    border-radius: 16px;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    padding: 24px 24px 20px;
+    
+    h2 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  .modal-body {
+    padding: 20px 24px 24px;
+    
+    h3 {
+      font-size: 1.1rem;
+      margin: 20px 0 10px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 .hero {
-    background: linear-gradient(135deg, #0b0f17, #131a24); // фон можно сменить на фирменный
+    background: rgb(28, 96, 255); // фон можно сменить на фирменный
     color: var(--text);
     height: 100vh; // Фиксированная высота вместо min-height
     display: flex;
@@ -12,6 +12,15 @@
     bottom: 0;
     z-index: 1000; // Высокий z-index
     overflow: hidden; // Убираем скролл
+    
+    // Класс для скрытия hero секции
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
   
     &__container {
       max-width: 1200px;
@@ -38,7 +47,7 @@
     &__desc {
       font-size: 1.2rem;
       line-height: 1.6;
-      color: var(--muted);
+      color: #fff;
       margin-bottom: 30px;
   
       strong {
@@ -49,7 +58,7 @@
     &__btn {
       display: inline-block;
       background: var(--accent);
-      color: #0b0f17;
+      color: #fff;
       font-weight: 700;
       padding: 14px 28px;
       border-radius: 10px;
@@ -182,6 +191,5 @@
         padding: 8px 16px;
         font-size: 0.85rem;
       }
-      }
     }
-  
+  }
