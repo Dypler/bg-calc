@@ -48,7 +48,14 @@
         background: #f3f3f3;
       }
     }
+
+    // Скрываем контакты в обычном меню
+    .nav-contacts {
+      display: none;
+    }
   }
+
+
 
   .burger {
     display: none;
@@ -103,7 +110,7 @@
     }
   }
 
-  @media (max-width: 860px) {
+  @media (max-width: 889px) {
     .nav {
       position: fixed;
       top: var(--header-h);
@@ -113,6 +120,7 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
+      align-items: center;
       gap: 12px;
       background: rgba(255, 255, 255, 0.6);
       -webkit-backdrop-filter: blur(8px);
@@ -124,9 +132,73 @@
       z-index: 900;
 
       a {
+        background-color: var(--bg);
+        width: 100%;
+        text-align: center;
         font-size: 18px;
         padding: 12px 14px;
         border-radius: 10px;
+      }
+
+      // Стили для контактов в мобильном меню
+      .nav-contacts {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .nav-contact-item {
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-phone,
+      .nav-email {
+        background-color: var(--bg);
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+        padding: 12px 14px;
+        border-radius: 10px;
+        color: var(--accent);
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+
+      .nav-messengers {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+      }
+
+      .nav-messenger-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        background-color: var(--bg);
+        border-radius: 10px;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: #f0f0f0;
+        }
+      }
+
+      .nav-messenger-icon {
+        width: 24px;
+        height: 24px;
       }
 
       &.open {

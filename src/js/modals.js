@@ -11,43 +11,25 @@ export const hystModal = new HystModal({
 
 // Функция для показа модалки успеха
 export function showSuccess() {
-  const modal = document.getElementById('success-modal');
-  if (modal) {
-    modal.classList.add('show');
-  }
+  hystModal.open('#success-modal');
 }
 
 // Функция для закрытия модалки успеха
 export function closeSuccessModal() {
-  const modal = document.getElementById('success-modal');
-  if (modal) {
-    modal.classList.remove('show');
-  }
+  hystModal.close('#success-modal');
 }
 
 // Функция для показа ошибки в модалке
 export function showError(message) {
-  const modal = document.getElementById('error-modal');
   const messageEl = document.getElementById('modal-message');
-  if (modal && messageEl) {
+  if (messageEl) {
     messageEl.textContent = message;
-    modal.classList.add('show');
   }
+  hystModal.open('#error-modal');
 }
 
 // Инициализация обработчиков для стандартных модалок
 export function initStandardModals() {
-  // Закрытие модалки по клику на фон
-  document.getElementById('error-modal')?.addEventListener('click', (e) => {
-    if (e.target.classList.contains('modal-overlay')) {
-      e.target.classList.remove('show');
-    }
-  });
-
-  // Закрытие модалки успеха по клику на фон
-  document.getElementById('success-modal')?.addEventListener('click', (e) => {
-    if (e.target.classList.contains('modal-overlay')) {
-      e.target.classList.remove('show');
-    }
-  });
+  // Эта функция больше не нужна для hystmodal, но оставляем для совместимости
+  // hystmodal автоматически обрабатывает все события
 }

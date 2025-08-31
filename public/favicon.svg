@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Фон -->
+  <rect width="32" height="32" rx="6" fill="#2563eb"/>
+  
+  <!-- Калькулятор -->
+  <rect x="6" y="8" width="20" height="16" rx="2" fill="#ffffff" stroke="#1e40af" stroke-width="1"/>
+  
+  <!-- Экран калькулятора -->
+  <rect x="8" y="10" width="16" height="4" rx="1" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.5"/>
+  
+  <!-- Кнопки -->
+  <rect x="8" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="13" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="18" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="23" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  
+  <rect x="8" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="13" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="18" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="23" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  
+  <rect x="8" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="13" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="18" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  <rect x="23" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
+  
+  <!-- Символ рубля (₽) -->
+  <text x="16" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#1e40af">₽</text>
+  
+  <!-- Символ БГ (Банковская Гарантия) -->
+  <text x="16" y="26" font-family="Arial, sans-serif" font-size="4" font-weight="bold" text-anchor="middle" fill="#1e40af">БГ</text>
+</svg>
+
+
+

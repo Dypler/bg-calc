@@ -4,7 +4,7 @@ h1 {
 }
 
 .sub {
-  color: var(--muted);
+  color: var(--textо);
   margin: 0 0 18px;
 }
 
@@ -73,23 +73,4 @@ button {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.footer {
-  margin-top: 24px;
-
-  a {
-    color: var(--accent);
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
 }

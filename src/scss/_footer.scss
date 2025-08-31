@@ -1,0 +1,187 @@
+.footer {
+  margin-top: 24px;
+  
+  &__main {
+    padding: 12px 0;
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+    background-color: var(--card);
+  }
+  
+  &__container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    
+    a {
+      color: var(--accent);
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  &__links {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__contact {
+    display: flex;
+    gap: 12px;
+    
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: larger;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  
+  &__messenger {
+    display: flex;
+    gap: 12px;
+  }
+  
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  a {
+    color: var(--accent);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
+// Адаптив для мобильных устройств
+@media (max-width: 768px) {
+  .footer {
+    margin-top: 16px;
+    
+    &__main {
+      padding: 16px 0;
+      margin-top: 8px;
+    }
+    
+    &__container {
+      padding: 0 16px;
+      gap: 16px;
+    }
+    
+    &__top {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    
+    &__contact {
+      flex-direction: column;
+      gap: 8px;
+      
+      a {
+        font-size: 16px;
+      }
+    }
+    
+    &__messenger {
+      gap: 16px;
+      
+      img {
+        width: 32px;
+        height: 32px;
+      }
+    }
+    
+    &__bottom {
+      flex-direction: column;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    
+    &__links {
+      gap: 12px;
+      
+      a {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+    }
+    
+    &__copyright {
+      p {
+        margin: 0 0 4px;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+// Адаптив для очень маленьких экранов
+@media (max-width: 480px) {
+  .footer {
+    &__container {
+      padding: 0 12px;
+    }
+    
+    &__top {
+      gap: 12px;
+    }
+    
+    &__contact {
+      a {
+        font-size: 15px;
+      }
+    }
+    
+    &__messenger {
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+    
+    &__links {
+      a {
+        font-size: 13px;
+      }
+    }
+    
+    &__copyright {
+      p {
+        font-size: 13px;
+      }
+    }
+  }
+}
