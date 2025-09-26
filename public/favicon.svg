@@ -1,35 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <!-- Фон -->
-  <rect width="32" height="32" rx="6" fill="#2563eb"/>
-  
-  <!-- Калькулятор -->
-  <rect x="6" y="8" width="20" height="16" rx="2" fill="#ffffff" stroke="#1e40af" stroke-width="1"/>
-  
-  <!-- Экран калькулятора -->
-  <rect x="8" y="10" width="16" height="4" rx="1" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.5"/>
-  
-  <!-- Кнопки -->
-  <rect x="8" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="13" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="18" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="23" y="16" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  
-  <rect x="8" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="13" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="18" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="23" y="19" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  
-  <rect x="8" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="13" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="18" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  <rect x="23" y="22" width="3" height="2" rx="0.5" fill="#3b82f6"/>
-  
-  <!-- Символ рубля (₽) -->
-  <text x="16" y="12" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="#1e40af">₽</text>
-  
-  <!-- Символ БГ (Банковская Гарантия) -->
-  <text x="16" y="26" font-family="Arial, sans-serif" font-size="4" font-weight="bold" text-anchor="middle" fill="#1e40af">БГ</text>
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="36" height="36" fill="#1C60FF"/>
+<path d="M8.88068 24V12.3636H16.8295V14.6477H11.6932V16.4659H13.2273C14.1742 16.4659 14.9981 16.6193 15.6989 16.9261C16.4034 17.233 16.947 17.6648 17.3295 18.2216C17.7159 18.7784 17.9091 19.4337 17.9091 20.1875C17.9091 20.9413 17.7159 21.6042 17.3295 22.1761C16.947 22.7481 16.4034 23.1951 15.6989 23.517C14.9981 23.839 14.1742 24 13.2273 24H8.88068ZM11.6932 21.7727H13.2273C13.6364 21.7727 13.9811 21.7027 14.2614 21.5625C14.5455 21.4186 14.7595 21.2254 14.9034 20.983C15.0511 20.7367 15.125 20.464 15.125 20.1648C15.125 19.733 14.9621 19.3731 14.6364 19.0852C14.3106 18.7936 13.8409 18.6477 13.2273 18.6477H11.6932V21.7727ZM27.2045 12.3636V14.6477H22.0682V24H19.2557V12.3636H27.2045Z" fill="white"/>
 </svg>
-
-
-
