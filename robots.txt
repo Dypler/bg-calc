@@ -27,7 +27,7 @@ Disallow: /package-lock.json
 Disallow: /vite.config.js
 
 # Sitemap
-Sitemap: https://независимая-гарантия.рф/sitemap.xml
+Sitemap: https://xn----7sbabaijlsmaf0chm0ck1a4vi.xn--p1ai/sitemap.xml
 
 # Crawl-delay для вежливого сканирования
 Crawl-delay: 1
